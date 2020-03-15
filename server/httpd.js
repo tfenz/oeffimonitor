@@ -1,20 +1,20 @@
-const express = require('express')
-const http = require('http')
-const url = require('url')
-const apicache = require('apicache')
+const express = require('express');
+const http = require('http');
+const url = require('url');
+const apicache = require('apicache');
 const settings = require(__dirname + '/settings.js');
 const package = require(__dirname + '/../package.json');
 
-let app = express()
-let cache = apicache.middleware
-let walkcache = []
+let app = express();
+let cache = apicache.middleware;
+let walkcache = [];
 
 app.use(express.static(__dirname + '/../site'));
 
 app.get('/api', cache(settings.api_cache_msec), (req, res) => {
-	console.log('API: new request')
+	console.log('API: new request');
 	getData((data) => res.json(data));
-})
+});
 
 app.listen(settings.listen_port, () => {
 	console.log('Server up on port', settings.listen_port);
@@ -26,7 +26,7 @@ const errorHandler = (error, cb) => {
 		status: 'error',
 		error: error
 	});
-}
+};
 
 const getData = (cb) => {
 	http.get(settings.api_url, (response) => {
@@ -42,7 +42,7 @@ const getData = (cb) => {
 		});
 		response.on('error', (err) => errorHandler('API response failed', cb));
 	}).on('error', (err) => errorHandler('API request failed', cb));
-}
+};
 
 const getOSRM = (coordinates) => {
 	if (!settings.osrm_api_url) {
@@ -53,13 +53,13 @@ const getOSRM = (coordinates) => {
 	const findCoordinates = (element) => {
 		return element.coordinates[0] === coordinates[0] &&
 			element.coordinates[1] === coordinates[1];
-	}
+	};
 
 	if (walkcache.find(findCoordinates)) {
 		return walkcache.find(findCoordinates).duration
 	}
 
-	console.log('OSRM: new request for', coordinates)
+	console.log('OSRM: new request for', coordinates);
 	const osrm_url = url.parse(settings.osrm_api_url +
 		coordinates[0] + ',' +
 		coordinates[1] + '?overview=false');
@@ -90,7 +90,7 @@ const getOSRM = (coordinates) => {
 	}).on('error', (err) => console.error(err));
 
 	return duration;
-}
+};
 
 const flatten = (json, cb) => {
 	let data = [];
@@ -170,11 +170,11 @@ const flatten = (json, cb) => {
 				});
 			})
 		})
-	})
+	});
 
 	data.sort((a, b) => {
 		return (a.time < b.time) ? -1 : ((a.time > b.time) ? 1 : 0);
-	})
+	});
 
 	if (json.data.trafficInfos) {
 		warnings = json.data.trafficInfos.map(trafficInfo => {
@@ -183,4 +183,4 @@ const flatten = (json, cb) => {
 	}
 
 	cb({ status: 'ok', departures: data, warnings: warnings });
-}
+};

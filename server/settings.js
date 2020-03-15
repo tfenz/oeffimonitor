@@ -3,9 +3,9 @@ const api_key = ''; // NOTE: api_key no longer needed to access data from wiener
 
 // define all RBLs of stops you want to display
 const api_ids = [
-  "223",    // 43-H
-  "231",    // 43-R
-  "549",    // 9-R/H (both directions are shown)
+  "223",    // 9 Westbahnhof & 43 Neuwaldegg
+  "231",    // 43 Schottentor
+  "549",    // 9 Wallrißstraße
 ];
 
 const api_url = 'http://www.wienerlinien.at/ogd_realtime/monitor' +
@@ -22,10 +22,10 @@ const filters = [
 ];
 
 // define your current locat.ion
-const location_coordinate = '48.218504, 16.327353' // Location of Cafe Max
+const location_coordinate = '48.218504, 16.327353'; // Location of Cafe Max
 
 // define OSRM server for routing to stops. Empty string to disable feature
-const osrm_api_url = 'http://router.project-osrm.org/route/v1/foot/' + location_coordinate + ';'
+const osrm_api_url = 'http://router.project-osrm.org/route/v1/foot/' + location_coordinate + ';';
 
 module.exports = {
   'api_url'         : api_url,
