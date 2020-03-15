@@ -16,7 +16,7 @@ body {
 }
 
 h1 { margin: 20px; }
-
+h3 { margin-left: 20px; }
 #error {
 	background-color: #F2DEDE;
 	color: black;
