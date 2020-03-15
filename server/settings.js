@@ -1,31 +1,16 @@
 // add your API key here
-const api_key = 'XXXXXXXXXX';
+const api_key = ''; // NOTE: api_key no longer needed to access data from wiener linien
 
 // define all RBLs of stops you want to display
 const api_ids = [
-  "223",    // Rathaus – 2 (Richtung Friedrich-Engels-Platz)
-  "231",    // Rathaus – 2 (Richtung Ottakringer Str./Erdbrustgasse)
-  "223",   // Rathaus – U2 (Richtung Karlsplatz)
-  "231",   // Rathaus – U2 (Richtung Seestadt)
-  "549",   // Landesgerichtsstraße – 43, 44, N43 (stadtauswärts)
-  //"1212",   // Schottentor – 37, 38, 40, 41, 42 (stadtauswärts)
-  //"1303",   // Schottentor — 40A (stadtauswärts)
-  //"3701",   // Schottentor – N38 (stadtauswärts, nur am Wochenende)
-  //"5568",   // Schottentor – N41 (stadtauswärts)
-  //"17",     // Rathausplatz/Burgtheater – D, 1, 71, N25, N38, N60, N66 (Richtung Schottentor, Nachtbusse nur wochentags)
-  //"48",     // Stadiongasse/Parlament – D, 1, 71 (Richtung Volkstheater)
-  //"16",     // Stadiongasse/Parlament – D, 1, 2, 71 (Richtung Schottentor)
-  //"1401",   // Volkstheater – 48A (stadtauswärts)
-  //"1440",   // Volkstheater – 49 (stadtauswärts)
-  //"4908",   // Volkstheater – U3 (Richtung Ottakring)
-  //"4909",   // Volkstheater – U3 (Richtung Simmering)
-  //"1376",   // Auerspergstraße – 46 (stadtauswärts)
-  //"5691",   // Auerspergstraße – N46 (stadtauswärts)
+  "223",    // 43-H
+  "231",    // 43-R
+  "549",    // 9-R/H (both directions are shown)
 ];
 
 const api_url = 'http://www.wienerlinien.at/ogd_realtime/monitor' +
   '?activateTrafficInfo=stoerunglang' +
-  `&sender=`+
+  `&sender=${api_key}`+
   '&rbl=' + api_ids.join("&rbl=");
 
 // define filters to exclude specific departures from the monitor
@@ -37,7 +22,7 @@ const filters = [
 ];
 
 // define your current locat.ion
-const location_coordinate = '48.218504, 16.327353'
+const location_coordinate = '48.218504, 16.327353' // Location of Cafe Max
 
 // define OSRM server for routing to stops. Empty string to disable feature
 const osrm_api_url = 'http://router.project-osrm.org/route/v1/foot/' + location_coordinate + ';'
