@@ -21,7 +21,7 @@ h1 {
 }
 
 h3 {
-    margin: -20px 20px 40px;
+    margin: -20px 20px 50px;
 }
 
 #error {
@@ -29,8 +29,8 @@ h3 {
     color: black;
     position: fixed;
     border-top: 4px solid #A94442;
-    bottom: 0%;
-    left: 0%;
+    bottom: 0;
+    left: 0;
     z-index: 100;
     margin: 0;
     padding: 0 1em;
@@ -43,8 +43,8 @@ h3 {
     color: black;
     position: fixed;
     border-top: 4px solid #f0ad4e;
-    bottom: 0%;
-    left: 0%;
+    bottom: 0;
+    left: 0;
     z-index: 100;
     margin: 0;
     padding: 0;
@@ -67,7 +67,7 @@ h3 {
 
 table {
     border: none;
-    border-spacing: 0px;
+    border-spacing: 0;
     text-align: left;
     width: 100%;
 }
