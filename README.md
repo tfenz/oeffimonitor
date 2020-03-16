@@ -1,3 +1,8 @@
+# Notes to this fork:
+Again, kisses to metalab <3 for providing an open source project perfectly suited for our purposes at Café Max.
+My adaptions are not meant as an improvement but a specification to suit the needs of the specific implementation in Café Max like display size, station...
+If you're interested in this project, I suggest to seek for the roots: [Metalab/oeffimonitor](https://github.com/Metalab/oeffimonitor). tfenz
+
 # Öffimonitor
 
 Displays an info screen with the next Wiener Linien public transport connections nearby. It was developed and is currently in use at [Metalab](https://metalab.at).
