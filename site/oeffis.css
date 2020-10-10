@@ -207,3 +207,7 @@ td.soon:nth-child(1)::before {
     margin-right:20px;
     margin-left:20px;
 }
+
+.hidden_msg{
+    display:none;
+}
