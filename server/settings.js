@@ -4,6 +4,8 @@ const api_key = ''; // NOTE: api_key no longer needed to access data from wiener
 // define all RBLs of stops you want to display
 const api_ids = [
   "223",    // 9 Westbahnhof & 43 Neuwaldegg
+  "1362",    // 2 Dornbach
+  "1368",    // 2 Friedrich-Engels-Platz
   "231",    // 43 Schottentor
   "549",    // 9 Wallrißstraße
 ];
