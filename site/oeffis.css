@@ -28,7 +28,7 @@ h3 {
     background-color: #F2DEDE;
     color: black;
     position: fixed;
-    border-top: 4px solid #A94442;
+    /*border-top: 4px solid #A94442;*/
     bottom: 0;
     left: 0;
     z-index: 100;
@@ -42,7 +42,7 @@ h3 {
     background-color: #fcf8e3;
     color: black;
     position: fixed;
-    border-top: 4px solid #f0ad4e;
+    /*border-top: 4px solid #f0ad4e;*/
     bottom: 0;
     left: 0;
     z-index: 100;
@@ -56,7 +56,8 @@ h3 {
 }
 
 #warning_counter {
-    color: #f0ad4e;
+    display: none;
+    /*color: #f0ad4e;*/
     float: right;
 }
 
