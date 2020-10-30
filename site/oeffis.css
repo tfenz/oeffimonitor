@@ -9,11 +9,14 @@
     font-weight: bold;
 }
 
+html * {cursor:none!important}
+
 body {
     margin: 0;
     font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
     background-color: black;
     color: #eee;
+    cursor: none !important;
 }
 
 h1 {
