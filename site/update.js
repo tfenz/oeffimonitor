@@ -155,19 +155,20 @@ function addDeparture(departure) {
   var differenceString = '+';
 
   if (difference > 3600) {
-    differenceString += Math.floor(difference / 3600) + 'h';
+    differenceString += Math.floor(difference / 3600) + ':';
     difference = difference % 3600;
   }
 
-  differenceString += addZeroBefore(Math.floor(difference / 60)) + 'm';
+  differenceString += addZeroBefore(Math.floor(difference / 60)) + ':';
   difference = difference % 60;
 
-  differenceString += parseInt(difference / 10) + '0s';
+  differenceString += parseInt(difference / 10) + '0';
 
   departureRow.innerHTML = '<tr><td class="time ' + walkStatus +
-    '">' + timeString + differenceString + '</td>' +
-    '<td>' + line + '</td><td>' + departure.stop +
-    '</td><td>' + capitalizeFirstLetter(departure.towards) +
+ // '">' + timeString + differenceString + '</td>' +
+  '">' +  differenceString + '</td>' +
+    '<td>' + line + '</td><td>' + departure.stop.replace("Betriebsbhf.","BHF.") +
+    '</td><td>' + capitalizeFirstLetter(departure.towards).replace("Betriebsbhf.","BHF.").replace("Winckelmannstraße","Winckelmannstr.").replace("Rudolfsheim","Rudolfsh.") +
     '</td>';
   document.querySelector('tbody').appendChild(departureRow);
 }
