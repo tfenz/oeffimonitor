@@ -168,7 +168,7 @@ function addDeparture(departure) {
   '<td style="text-align: center;">' +  differenceString + '</td>' +
     '<td>' + line + '</td>'+
     '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
-    '<td>' + capitalizeFirstLetter(departure.towards).replace("Betriebsbhf.","BHF.").replace("Winckelmannstraße","Winckelmannstr.").replace("Rudolfsheim","Rudolfsh.") + '</td>';
+    '<td>' + capitalizeFirstLetter(departure.towards).replace("Betriebsbhf.","BHF.").replace("Winckelmannstraße","Winckelmannstr.").replace("Rudolfsheim","Rud.") + '</td>';
   document.querySelector('tbody').appendChild(departureRow);
 }
 
