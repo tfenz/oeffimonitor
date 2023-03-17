@@ -146,7 +146,7 @@ td.soon:nth-child(1)::before {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background: #000;
+    background: #910000;
     color: #FFF;
 }
 
