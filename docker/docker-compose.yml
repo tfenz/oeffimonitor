@@ -1,0 +1,20 @@
+version: '3.7'
+
+networks:
+  net-pub:
+    driver: bridge
+    attachable: true
+
+services:
+  oeffimonitor:
+    image: oeffimonitor
+    container_name: "oeffimonitor"
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - net-pub
+
