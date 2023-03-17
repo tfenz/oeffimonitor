@@ -152,7 +152,7 @@ function addDeparture(departure) {
     ':' + addZeroBefore(departureTime.getMinutes()) +
     '</b>&nbsp;';
 
-  var differenceString = '+';
+  var differenceString = '';
 
   if (difference > 3600) {
     differenceString += Math.floor(difference / 3600) + ':';
