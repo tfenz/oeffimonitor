@@ -8,9 +8,11 @@
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "author": "Moritz Wilhelmy (https://barfooze.de)",
-  "contributors": ["GitHub"],
+  "contributors": [
+    "GitHub"
+  ],
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "^23.1.4"
   }
 }
