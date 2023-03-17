@@ -166,14 +166,14 @@ function addDeparture(departure) {
 
   departureRow.innerHTML = '<tr><td class="time ' + walkStatus +
  // '">' + timeString + differenceString + '</td>' +
-  '">' +  differenceString + '</td>' +
+  '"  style="text-align: left;">' +  differenceString + '</td>' +
     '<td>' + line + '</td><td>' + departure.stop.replace("Betriebsbhf.","BHF.") +
     '</td><td>' + capitalizeFirstLetter(departure.towards).replace("Betriebsbhf.","BHF.").replace("Winckelmannstraße","Winckelmannstr.").replace("Rudolfsheim","Rudolfsh.") +
     '</td>';
   document.querySelector('tbody').appendChild(departureRow);
 }
 
-window.onload = function () {
+window.onload = function () { 
   clock();
   update();
   warning();
