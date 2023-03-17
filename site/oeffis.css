@@ -183,7 +183,7 @@ td.soon:nth-child(1)::before {
 
     td {
         height: 60px;
-        font-size: 48px !important;
+        font-size: 46px !important;
         line-height: 58px;
         overflow: hidden;
         white-space: nowrap;
