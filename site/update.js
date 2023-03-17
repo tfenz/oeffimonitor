@@ -171,9 +171,10 @@ function addDeparture(departure) {
     '<td>' + capitalizeFirstLetter(departure.towards)
       .replace("Betriebsbhf.","BHF.")
       .replace("Winckelmannstraße","Winckelmannstr.")
-      .replace("Rudolfsheim","Rud.") + '</td>'
+      .replace("Rudolfsheim","Rud.") 
       .replace(" S",' <img src="assets/sbahn-gen.png" width="40" height="40" />')
       .replace(" U",' <img src="assets/ubahn-gen.png" width="40" height="40" />');
+      + '</td>'
   document.querySelector('tbody').appendChild(departureRow);
 }
 
