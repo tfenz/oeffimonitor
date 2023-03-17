@@ -172,8 +172,8 @@ function addDeparture(departure) {
       .replace("Betriebsbhf.","BHF.")
       .replace("Winckelmannstraße","Winckelmannstr.")
       .replace("Rudolfsheim","Rud.") 
-      .replace(" S",' <img src="assets/sbahn-gen.png" width="40" height="40" />')
-      .replace(" U",' <img src="assets/ubahn-gen.png" width="40" height="40" />');
+      .replace(" S",' <img src="assets/sbahn-gen.png" />')
+      .replace(" U",' <img src="assets/ubahn-gen.png" />');
       + '</td>'
   document.querySelector('tbody').appendChild(departureRow);
 }
