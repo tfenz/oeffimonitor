@@ -164,12 +164,11 @@ function addDeparture(departure) {
 
   differenceString += parseInt(difference / 10) + '0';
 
-  departureRow.innerHTML = '<tr><td class="time ' + walkStatus +
- // '">' + timeString + differenceString + '</td>' +
-  '"  style="text-align: left;">' +  differenceString + '</td>' +
-    '<td>' + line + '</td><td>' + departure.stop.replace("Betriebsbhf.","BHF.") +
-    '</td><td>' + capitalizeFirstLetter(departure.towards).replace("Betriebsbhf.","BHF.").replace("Winckelmannstraße","Winckelmannstr.").replace("Rudolfsheim","Rudolfsh.") +
-    '</td>';
+  departureRow.innerHTML = '<tr>'+
+  '<td style="text-align: center;">' +  differenceString + '</td>' +
+    '<td>' + line + '</td>'+
+    '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
+    '<td>' + capitalizeFirstLetter(departure.towards).replace("Betriebsbhf.","BHF.").replace("Winckelmannstraße","Winckelmannstr.").replace("Rudolfsheim","Rudolfsh.") + '</td>';
   document.querySelector('tbody').appendChild(departureRow);
 }
 
