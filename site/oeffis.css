@@ -162,6 +162,12 @@ td.soon:nth-child(1)::before {
     color: #F9EC28;
 }
 
+.metro-generic{
+    padding: 0 3px;
+    background: #419bca;
+    color: #ffffff;
+}
+
 @media (max-width: 1280px) {
     body {
         overflow: hidden;
