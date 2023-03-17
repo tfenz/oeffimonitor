@@ -168,7 +168,7 @@ td.soon:nth-child(1)::before {
     color: #ffffff;
 }
 
-@media (max-width: 1280px) {
+/*@media (max-width: 1280px) {*/
     body {
         overflow: hidden;
     }
@@ -204,7 +204,7 @@ td.soon:nth-child(1)::before {
     tr > td:nth-child(3) {
         padding-left: 10px;
     }
-}
+/*}*/
 
 @keyframes blink {
     to {
