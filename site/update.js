@@ -118,6 +118,16 @@ function update() {
   req.send();
 }
 
+function colorize(diff){
+  if (diff < 5*60){
+    return 'style="text-align: center; color:#910000;"';
+  }
+  if (diff < 10*60){
+    return 'style="text-align: center; color:#F9EC28;"';
+  }
+  return 'style="text-align: center;"'
+}
+
 function addDeparture(departure) {
   var departureRow = document.createElement('tr');
   var now = new Date();
@@ -163,9 +173,9 @@ function addDeparture(departure) {
   difference = difference % 60;
 
   differenceString += parseInt(difference / 10) + '0';
-
+  diffStyle = getDiffStyle(difference); 
   departureRow.innerHTML = '<tr>'+
-  '<td style="text-align: center;">' +  differenceString + '</td>' +
+  '<td '+diffStyle+'>' +  differenceString + '</td>' +
     '<td>' + line + '</td>'+
     '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
     '<td>' + capitalizeFirstLetter(departure.towards)
