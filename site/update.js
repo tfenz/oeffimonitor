@@ -119,10 +119,10 @@ function update() {
 }
 
 function getDiffStyle(differenceMin){
-  if (differenceMin < 2){
+  if (differenceMin <= 3){
     return 'style="text-align: center; color:red;"';
   }
-  if (differenceMin < 6){
+  if (differenceMin < 10){
     
     return 'style="text-align: center; color:orange;"';
   }
@@ -157,14 +157,18 @@ function addDeparture(departure) {
   departureRow.innerHTML = '<tr>'+
   '<td '+ diffStyle +'>' +  diffString + '</td>' +
     '<td>' + line + '</td>'+
-    '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
+    '<td>' + departure.stop
+      .replace("Betriebsbhf.","BHF.")
+      .replace("gasse","g.") 
+      + '</td>' +
     '<td>' + capitalizeFirstLetter(departure.towards)
+      .replace("gasse","g.")
       .replace("Betriebsbhf.","BHF.")
       .replace("Winckelmannstraße","Winckelmannstr.")
       .replace("Rudolfsheim","Rud.") 
       .replace(" S",' <img src="assets/sbahn-gen.png" width="45" height="45" style="margin-top:5px; margin-bottom:-5px"/>')
       .replace(" U",' <img src="assets/ubahn-gen.png" width="45" height="45" style="margin-top:5px; margin-bottom:-5px"/>');
-      + '</td>'
+      + '</td></tr>';
   document.querySelector('tbody').appendChild(departureRow);
 }
 
