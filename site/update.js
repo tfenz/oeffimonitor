@@ -151,8 +151,11 @@ function addDeparture(departure) {
 
   var differenceMin = Math.floor(difference / 60);
   var diffStyle = getDiffStyle(differenceMin); 
+
+  var diffString = differenceMin + ' min' ? differenceMin > 0 : 'now';
+
   departureRow.innerHTML = '<tr>'+
-  '<td '+ diffStyle +'>' +  differenceMin + ' min</td>' +
+  '<td '+ diffStyle +'>' +  diffString + '</td>' +
     '<td>' + line + '</td>'+
     '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
     '<td>' + capitalizeFirstLetter(departure.towards)
