@@ -28,6 +28,10 @@ function capitalizeFirstLetter(str) {
   return str.replace(/\w[^- ]*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
+function addZeroBefore(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+
 function showError(error) {
   document.querySelector('tbody').innerHTML = '';
   var last_update_string = '–';
