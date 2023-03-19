@@ -125,7 +125,7 @@ function getDiffStyle(diff){
   if (diff < 10*60){
     return 'style="text-align: center; color:#F9EC28;"';
   }
-  return 'style="text-align: center;"'
+  return 'style="text-align: center;"';
 }
 
 function addDeparture(departure) {
@@ -173,9 +173,9 @@ function addDeparture(departure) {
   difference = difference % 60;
 
   differenceString += parseInt(difference / 10) + '0';
-  diffStyle = getDiffStyle(difference); 
+  var diffStyle = getDiffStyle(difference); 
   departureRow.innerHTML = '<tr>'+
-  '<td '+diffStyle+'>' +  differenceString + '</td>' +
+  '<td '+ diffStyle+'>' +  differenceString + '</td>' +
     '<td>' + line + '</td>'+
     '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
     '<td>' + capitalizeFirstLetter(departure.towards)
