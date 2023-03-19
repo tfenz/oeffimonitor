@@ -28,10 +28,6 @@ function capitalizeFirstLetter(str) {
   return str.replace(/\w[^- ]*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-function addZeroBefore(n) {
-  return (n < 10 ? '0' : '') + n;
-}
-
 function showError(error) {
   document.querySelector('tbody').innerHTML = '';
   var last_update_string = '–';
@@ -150,7 +146,6 @@ function addDeparture(departure) {
   }
 
   var differenceMin = Math.floor(difference / 60);
-  differenceMin += parseInt(difference / 10) + '0';
   var diffStyle = getDiffStyle(differenceMin); 
   departureRow.innerHTML = '<tr>'+
   '<td '+ diffStyle +'>' +  differenceMin + ' min</td>' +
