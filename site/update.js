@@ -120,11 +120,11 @@ function update() {
 
 function getDiffStyle(differenceMin, textAlign){
   if (differenceMin <= 3){
-    return 'style="text-align: ' + textAlign + '; color:red;"';
+    return 'style="text-align: ' + textAlign + '; color:#ff7a6b;"';
   }
   if (differenceMin < 10){
     
-    return 'style="text-align:  ' + textAlign + '; color:orange;"';
+    return 'style="text-align:  ' + textAlign + '; color:#fff9b3;"';
   }
   
   return 'style="text-align:  ' + textAlign + ';"';
