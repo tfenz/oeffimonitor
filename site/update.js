@@ -118,16 +118,16 @@ function update() {
   req.send();
 }
 
-function getDiffStyle(differenceMin){
+function getDiffStyle(differenceMin, textAlign){
   if (differenceMin <= 3){
-    return 'style="text-align: center; color:red;"';
+    return 'style="text-align: ' + textAlign + '; color:red;"';
   }
   if (differenceMin < 10){
     
-    return 'style="text-align: center; color:orange;"';
+    return 'style="text-align:  ' + textAlign + '; color:orange;"';
   }
   
-  return 'style="text-align: center;"';
+  return 'style="text-align:  ' + textAlign + ';"';
 }
 
 function addDeparture(departure) {
@@ -150,7 +150,8 @@ function addDeparture(departure) {
   }
 
   var differenceMin = Math.floor(difference / 60);
-  var diffStyle = getDiffStyle(differenceMin); 
+  var diffStyleCenter = getDiffStyle(differenceMin,'center'); 
+  var diffStyleLeft = getDiffStyle(differenceMin,'left'); 
 
   var diffString = differenceMin > 0 ?  differenceMin + ' min': 'now';
 
