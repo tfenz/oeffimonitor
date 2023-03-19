@@ -118,13 +118,18 @@ function update() {
   req.send();
 }
 
-function getDiffStyle(diff){
-  if (diff < 5*60){
-    return 'style="text-align: center; color:#910000;"';
+function getDiffStyle(timeDiff){
+  if (timeDiff < 2*60){
+    alert(timeDiff );
+    return 'style="text-align: center; color:red;"';
   }
-  if (diff < 10*60){
-    return 'style="text-align: center; color:#F9EC28;"';
+  if (timeDiff < 6*60){
+    
+    alert(timeDiff );
+    return 'style="text-align: center; color:orange;"';
   }
+  
+  alert(timeDiff );
   return 'style="text-align: center;"';
 }
 
@@ -175,7 +180,7 @@ function addDeparture(departure) {
   differenceString += parseInt(difference / 10) + '0';
   var diffStyle = getDiffStyle(difference); 
   departureRow.innerHTML = '<tr>'+
-  '<td '+ diffStyle+'>' +  differenceString + '</td>' +
+  '<td '+ diffStyle +'>' +  differenceString + '</td>' +
     '<td>' + line + '</td>'+
     '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
     '<td>' + capitalizeFirstLetter(departure.towards)
