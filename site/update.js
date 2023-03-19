@@ -150,19 +150,18 @@ function addDeparture(departure) {
   }
 
   var differenceMin = Math.floor(difference / 60);
-  var diffStyleCenter = getDiffStyle(differenceMin,'center'); 
-  var diffStyleLeft = getDiffStyle(differenceMin,'left'); 
-
+  var diffStyleCenter = getDiffStyle(differenceMin, 'center'); 
+  var diffStyleLeft = getDiffStyle(differenceMin, 'left'); 
   var diffString = differenceMin > 0 ?  differenceMin + ' min': 'now';
 
   departureRow.innerHTML = '<tr>'+
-  '<td '+ diffStyle +'>' +  diffString + '</td>' +
+  '<td '+ diffStyleCenter +'>' +  diffString + '</td>' +
     '<td>' + line + '</td>'+
-    '<td '+ diffStyle +'>' + departure.stop
+    '<td '+ diffStyleLeft +'>' + departure.stop
       .replace("Betriebsbhf.","BHF.")
       .replace("gasse","g.") 
       + '</td>' +
-    '<td '+ diffStyle +'>' + capitalizeFirstLetter(departure.towards)
+    '<td '+ diffStyleLeft +'>' + capitalizeFirstLetter(departure.towards)
       .replace("gasse","g.")
       .replace("Betriebsbhf.","BHF.")
       .replace("Winckelmannstraße","Winckelmannstr.")
