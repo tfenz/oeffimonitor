@@ -152,7 +152,7 @@ function addDeparture(departure) {
   var differenceMin = Math.floor(difference / 60);
   var diffStyle = getDiffStyle(differenceMin); 
 
-  var diffString = differenceMin + ' min' ? differenceMin > 0 : 'now';
+  var diffString = differenceMin > 0 ?  differenceMin + ' min': 'now';
 
   departureRow.innerHTML = '<tr>'+
   '<td '+ diffStyle +'>' +  diffString + '</td>' +
