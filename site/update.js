@@ -118,7 +118,7 @@ function update() {
   req.send();
 }
 
-function colorize(diff){
+function getDiffStyle(diff){
   if (diff < 5*60){
     return 'style="text-align: center; color:#910000;"';
   }
