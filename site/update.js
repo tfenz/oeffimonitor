@@ -157,11 +157,11 @@ function addDeparture(departure) {
   departureRow.innerHTML = '<tr>'+
   '<td '+ diffStyle +'>' +  diffString + '</td>' +
     '<td>' + line + '</td>'+
-    '<td>' + departure.stop
+    '<td '+ diffStyle +'>' + departure.stop
       .replace("Betriebsbhf.","BHF.")
       .replace("gasse","g.") 
       + '</td>' +
-    '<td>' + capitalizeFirstLetter(departure.towards)
+    '<td '+ diffStyle +'>' + capitalizeFirstLetter(departure.towards)
       .replace("gasse","g.")
       .replace("Betriebsbhf.","BHF.")
       .replace("Winckelmannstraße","Winckelmannstr.")
