@@ -118,18 +118,15 @@ function update() {
   req.send();
 }
 
-function getDiffStyle(timeDiff){
-  if (timeDiff < 2*60){
-    alert(timeDiff );
+function getDiffStyle(differenceMin){
+  if (differenceMin < 2){
     return 'style="text-align: center; color:red;"';
   }
-  if (timeDiff < 6*60){
+  if (differenceMin < 6){
     
-    alert(timeDiff );
     return 'style="text-align: center; color:orange;"';
   }
   
-  alert(timeDiff );
   return 'style="text-align: center;"';
 }
 
@@ -138,17 +135,6 @@ function addDeparture(departure) {
   var now = new Date();
   var departureTime = new Date(departure.time);
   var difference = (departureTime.getTime() - now.getTime()) / 1000;
-  var walkDuration = departure.walkDuration;
-  var walkStatus = departure.walkStatus;
-
-  if (difference < 0 || walkDuration * 0.9 > difference) {
-    walkStatus = 'too late';
-    return false;
-  } else if (walkDuration + 2 * 60 > difference) {
-    walkStatus = 'hurry';
-  } else if (walkDuration + 5 * 60 > difference) {
-    walkStatus = 'soon';
-  }
 
   var line = departure.line;
   var type = departure.type;
@@ -163,24 +149,11 @@ function addDeparture(departure) {
     line = '<span class="nightline">' + line + '</span>';
   }
 
-  var timeString = '<b>' + addZeroBefore(departureTime.getHours()) +
-    ':' + addZeroBefore(departureTime.getMinutes()) +
-    '</b>&nbsp;';
-
-  var differenceString = '';
-
-  if (difference > 3600) {
-    differenceString += Math.floor(difference / 3600) + ':';
-    difference = difference % 3600;
-  }
-
-  differenceString += addZeroBefore(Math.floor(difference / 60)) + ':';
-  difference = difference % 60;
-
-  differenceString += parseInt(difference / 10) + '0';
-  var diffStyle = getDiffStyle(difference); 
+  var differenceMin = Math.floor(difference / 60);
+  differenceMin += parseInt(difference / 10) + '0';
+  var diffStyle = getDiffStyle(differenceMin); 
   departureRow.innerHTML = '<tr>'+
-  '<td '+ diffStyle +'>' +  differenceString + '</td>' +
+  '<td '+ diffStyle +'>' +  differenceMin + ' min</td>' +
     '<td>' + line + '</td>'+
     '<td>' + departure.stop.replace("Betriebsbhf.","BHF.") +'</td>'+
     '<td>' + capitalizeFirstLetter(departure.towards)
