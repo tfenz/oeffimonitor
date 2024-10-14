@@ -1,5 +1,5 @@
 // add your API key here
-const api_key = 'XXXXXXXXXX';
+// const api_key = 'XXXXXXXXXX';
 
 // define all RBLs of stops you want to display
 const api_ids = [
@@ -23,10 +23,11 @@ const api_ids = [
   "5691",   // Auerspergstraße – N46 (stadtauswärts)
 ];
 
-const api_url = 'http://www.wienerlinien.at/ogd_realtime/monitor' +
+const api_url = 'https://www.wienerlinien.at/ogd_realtime/monitor' +
   '?activateTrafficInfo=stoerunglang' +
-  `&sender=${api_key}`+
+//  `&sender=${api_key}`+
   '&rbl=' + api_ids.join("&rbl=");
+
 
 // define filters to exclude specific departures from the monitor
 // currently you can exclude lines as a whole or only at certain stops
@@ -48,11 +49,12 @@ const filters = [
 const location_coordinate = '16.3509389,48.2103151'
 
 // define OSRM server for routing to stops. Empty string to disable feature
-const osrm_api_url = 'http://router.project-osrm.org/route/v1/foot/' + location_coordinate + ';'
+const osrm_api_url = 'https://router.project-osrm.org/route/v1/foot/' + location_coordinate + ';'
+
 
 module.exports = {
   'api_url'         : api_url,
-  'api_key'         : api_key,
+//  'api_key'         : api_key,
   'api_ids'         : api_ids,
   'filters'         : filters,
   'api_cache_msec'  : 6000,   // cache API responses for this many milliseconds; default: 6s

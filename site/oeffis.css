@@ -124,8 +124,8 @@ tr > td:nth-child(3) {
 }
 
 td.time:nth-child(1)::before {
-    content: "⚫\00a0";
-    opacity: 0;
+	content: "●\00a0";
+	opacity:0;
 }
 
 td.hurry:nth-child(1)::before {

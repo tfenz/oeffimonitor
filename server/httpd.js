@@ -1,7 +1,7 @@
-const express = require('express');
-const http = require('http');
-const url = require('url');
-const apicache = require('apicache');
+const express = require('express')
+const https = require('https')
+const url = require('url')
+const apicache = require('apicache')
 const settings = require(__dirname + '/settings.js');
 const package = require(__dirname + '/../package.json');
 
@@ -12,13 +12,55 @@ let walkcache = [];
 app.use(express.static(__dirname + '/../site'));
 
 app.get('/api', cache(settings.api_cache_msec), (req, res) => {
-	console.log('API: new request');
+	console.log('API: new request')
 	getData((data) => res.json(data));
-});
+})
 
 app.listen(settings.listen_port, () => {
 	console.log('Server up on port', settings.listen_port);
 });
+
+const requestLoopOSRM = () => {
+	// check if unrequested walk duration was added to cache
+	const next = walkcache.find((element) => element.requested === false)
+
+	// if not, do nothing
+	if (next === undefined) {
+		return
+	}
+
+	// if yes, set requested to true to remove from queue
+	next.requested = true
+
+	console.log('OSRM: new request for', next.coordinates)
+	const osrm_url = url.parse(settings.osrm_api_url +
+		next.coordinates[0] + ',' +
+		next.coordinates[1] + '?overview=false');
+
+	https.get({
+		protocol: osrm_url.protocol,
+		host: osrm_url.host,
+		path: osrm_url.path,
+		headers: {
+			'User-Agent': 'Öffimonitor/' + package.version + ' <https://github.com/metalab/oeffimonitor>',
+		}
+	}, (response) => {
+		let data = '';
+		response.on('data', (chunk) => data += chunk);
+		response.on('end', () => {
+			try {
+				next.duration = JSON.parse(data).routes[0].duration;
+				console.log('resolved for', next.coordinates, next.duration)
+			} catch (e) {
+				console.error('OSRM API response invalid JSON', data);
+			}
+		});
+		response.on('error', (err) => console.error(err));
+	}).on('error', (err) => console.error(err));
+}
+
+// rate limiting to once per second
+setInterval(requestLoopOSRM, 1000)
 
 const errorHandler = (error, cb) => {
 	console.error(error);
@@ -26,10 +68,10 @@ const errorHandler = (error, cb) => {
 		status: 'error',
 		error: error
 	});
-};
+}
 
 const getData = (cb) => {
-	http.get(settings.api_url, (response) => {
+	https.get(settings.api_url, (response) => {
 		let data = '';
 		response.on('data', (chunk) => data += chunk);
 		response.on('end', () => {
@@ -42,55 +84,28 @@ const getData = (cb) => {
 		});
 		response.on('error', (err) => errorHandler('API response failed', cb));
 	}).on('error', (err) => errorHandler('API request failed', cb));
-};
+}
 
-const getOSRM = (coordinates) => {
+const getWalkDuration = (coordinates) => {
 	if (!settings.osrm_api_url) {
 		// no OSRM server defined
-		return;
+		return undefined;
 	}
 
 	const findCoordinates = (element) => {
 		return element.coordinates[0] === coordinates[0] &&
 			element.coordinates[1] === coordinates[1];
-	};
+	}
 
+	// if cached, fetch from cache
 	if (walkcache.find(findCoordinates)) {
 		return walkcache.find(findCoordinates).duration
 	}
 
-	console.log('OSRM: new request for', coordinates);
-	const osrm_url = url.parse(settings.osrm_api_url +
-		coordinates[0] + ',' +
-		coordinates[1] + '?overview=false');
-
-	let duration;
-
-	http.get({
-		protocol: osrm_url.protocol,
-		host: osrm_url.host,
-		path: osrm_url.path,
-		headers: {
-			'User-Agent': 'Öffimonitor/' + package.version + ' <https://github.com/metalab/oeffimonitor>',
-		}
-	}, (response) => {
-		let data = '';
-		response.on('data', (chunk) => data += chunk);
-		response.on('end', () => {
-			try {
-				duration = JSON.parse(data).routes[0].duration;
-				if (!walkcache.find(findCoordinates)) {
-					walkcache.push({ coordinates: coordinates, duration: duration })
-				}
-			} catch (e) {
-				console.error('OSRM API response invalid JSON', data);
-			}
-		});
-		response.on('error', (err) => console.error(err));
-	}).on('error', (err) => console.error(err));
-
-	return duration;
-};
+	// else push to cache queue
+	walkcache.push({ coordinates: coordinates, duration: undefined, requested: false })
+	return undefined;
+}
 
 const flatten = (json, cb) => {
 	let data = [];
@@ -138,7 +153,7 @@ const flatten = (json, cb) => {
 					return; // connection does not have any time information -> log & skip
 				}
 
-				let walkDuration = getOSRM(monitor.locationStop.geometry.coordinates);
+				let walkDuration = getWalkDuration(monitor.locationStop.geometry.coordinates);
 				let differenceToNow = (time.getTime() - now.getTime()) / 1000;
 				let walkStatus;
 
@@ -170,11 +185,11 @@ const flatten = (json, cb) => {
 				});
 			})
 		})
-	});
+	})
 
 	data.sort((a, b) => {
 		return (a.time < b.time) ? -1 : ((a.time > b.time) ? 1 : 0);
-	});
+	})
 
 	if (json.data.trafficInfos) {
 		warnings = json.data.trafficInfos.map(trafficInfo => {
@@ -183,4 +198,4 @@ const flatten = (json, cb) => {
 	}
 
 	cb({ status: 'ok', departures: data, warnings: warnings });
-};
+}
